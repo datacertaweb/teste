@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataCerta - Painel de Controle</title>
+    <link rel="stylesheet" href="../styles/painel-controle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="painel-container">
+        <!-- Header -->
+        <header class="painel-header">
+            <div class="header-left">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Voltar ao Dashboard</span>
+                </a>
+            </div>
+            <div class="header-center">
+                <h1>Painel de Controle</h1>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navegação por Abas -->
+        <nav class="painel-tabs">
+            <button class="painel-tab active" data-tab="produtos">
+                <i class="fas fa-boxes"></i>
+                <span>Produtos</span>
+            </button>
+            <button class="painel-tab" data-tab="locais">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Locais</span>
+            </button>
+            <button class="painel-tab" data-tab="usuarios">
+                <i class="fas fa-users"></i>
+                <span>Usuários</span>
+            </button>
+            <button class="painel-tab" data-tab="configuracoes">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </button>
+        </nav>
+
+        <!-- Conteúdo das Abas -->
+        <main class="painel-content">
+            <!-- Aba Produtos -->
+            <section class="tab-content active" id="produtos">
+                <div class="content-header">
+                    <h2>Cadastro de Produtos</h2>
+                    <p>Gerencie os produtos do seu sistema</p>
+                </div>
+
+                <div class="painel-grid">
+                    <!-- Formulário de Cadastro -->
+                    <div class="painel-card">
+                        <h3>Novo Produto</h3>
+                        <form class="painel-form" id="formProduto">
+                            <div class="form-group">
+                                <label for="codigoProduto">Código do Produto</label>
+                                <input type="text" id="codigoProduto" name="codigo" placeholder="Ex: PROD001" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="descricaoProduto">Descrição</label>
+                                <input type="text" id="descricaoProduto" name="descricao" placeholder="Ex: Produto de exemplo" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="painel-btn primary">
+                                    <i class="fas fa-plus"></i>
+                                    Cadastrar Produto
+                                </button>
+                                <button type="button" class="painel-btn secondary" id="importarLote">
+                                    <i class="fas fa-upload"></i>
+                                    Importar em Lote
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Área de Upload -->
+                        <div class="upload-area" id="uploadArea" style="display: none;">
+                            <div class="upload-box">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Arraste o arquivo aqui ou clique para selecionar</p>
+                                <small>Formatos aceitos: CSV, TXT, XLSX</small>
+                                <input type="file" id="fileInput" accept=".csv,.txt,.xlsx" style="display: none;">
+                            </div>
+                            <div class="file-preview" id="filePreview" style="display: none;">
+                                <h4>Preview do arquivo:</h4>
+                                <div class="preview-content"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Produtos -->
+                    <div class="painel-card">
+                        <h3>Produtos Cadastrados</h3>
+                        <div class="painel-lista">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Descrição</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaProdutos">
+                                    <tr>
+                                        <td>PROD001</td>
+                                        <td>Produto de Exemplo</td>
+                                        <td>
+                                            <button class="btn-action edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aba Locais -->
+            <section class="tab-content" id="locais">
+                <div class="content-header">
+                    <h2>Cadastro de Locais</h2>
+                    <p>Localização dos produtos</p>
+                </div>
+
+                <div class="painel-grid">
+                    <!-- Formulário de Cadastro -->
+                    <div class="painel-card cadastro-local">
+                        <h3>Novo Local</h3>
+                        <form class="painel-form" id="formLocal">
+                            <div class="form-group">
+                                <label for="nomeLocal">Nome do Local</label>
+                                <input type="text" id="nomeLocal" name="nome" placeholder="Ex: Setor Administrativo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sublocal">Sublocal</label>
+                                <input type="text" id="sublocal" name="sublocal" placeholder="Ex: Sala 101, Recepção" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="painel-btn primary">
+                                    <i class="fas fa-plus"></i>
+                                    Cadastrar Local
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Locais -->
+                    <div class="painel-card">
+                        <h3>Locais Cadastrados</h3>
+                        <div class="painel-lista">
+                            <table class="data-table tabela-local">
+                                <thead>
+                                    <tr>
+                                        <th>Local</th>
+                                        <th>Sublocal</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaLocais">
+                                    <tr>
+                                        <td>Setor Administrativo</td>
+                                        <td>Sala 101</td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Setor Operacional</td>
+                                        <td>Recepção</td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Setor Financeiro</td>
+                                        <td>Tesouraria</td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aba Usuários -->
+            <section class="tab-content" id="usuarios">
+                <div class="content-header">
+                    <h2>Cadastro de Usuários</h2>
+                    <p>Gerencie usuários que terão acesso ao aplicativo</p>
+                </div>
+
+                <div class="painel-grid">
+                    <!-- Formulário de Cadastro -->
+                    <div class="painel-card cadastro-usuario">
+                        <h3>Novo Usuário</h3>
+                        <form class="painel-form" id="formUsuario">
+                            <div class="form-group">
+                                <label for="nomeUsuario">Nome</label>
+                                <input type="text" id="nomeUsuario" name="nome" placeholder="Nome completo do usuário" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginUsuario">Usuário</label>
+                                <input type="text" id="loginUsuario" name="usuario" placeholder="Login único do usuário" required>
+                                <small class="form-help">Login único para acesso ao sistema</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="senhaUsuario">Senha</label>
+                                <input type="password" id="senhaUsuario" name="senha" placeholder="Senha do usuário" required>
+                                <small class="form-help">Senha será armazenada com hash para segurança</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="papelUsuario">Papel</label>
+                                <select id="papelUsuario" name="papel" required>
+                                    <option value="">Selecione o papel</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="colaborador">Colaborador</option>
+                                    <option value="supervisor">Supervisor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="statusUsuario">Status</label>
+                                <select id="statusUsuario" name="status" required>
+                                    <option value="">Selecione o status</option>
+                                    <option value="ativo">Ativo</option>
+                                    <option value="inativo">Inativo</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="painel-btn primary">
+                                    <i class="fas fa-user-plus"></i>
+                                    Cadastrar Usuário
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Usuários -->
+                    <div class="painel-card">
+                        <h3>Usuários Cadastrados</h3>
+                        <div class="painel-lista">
+                            <table class="data-table tabela-usuario">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Usuário</th>
+                                        <th>Papel</th>
+                                        <th>Senha</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaUsuarios">
+                                    <tr>
+                                        <td>João Silva</td>
+                                        <td>joao.silva</td>
+                                        <td><span class="badge admin">Administrador</span></td>
+                                        <td><code class="password-hash">$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj</code></td>
+                                        <td><span class="status active">Ativo</span></td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maria Santos</td>
+                                        <td>maria.santos</td>
+                                        <td><span class="badge colaborador">Colaborador</span></td>
+                                        <td><code class="password-hash">$2b$12$8K2w5c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8</code></td>
+                                        <td><span class="status active">Ativo</span></td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carlos Oliveira</td>
+                                        <td>carlos.oliveira</td>
+                                        <td><span class="badge supervisor">Supervisor</span></td>
+                                        <td><code class="password-hash">$2b$12$9L3v5c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8</code></td>
+                                        <td><span class="status inactive">Inativo</span></td>
+                                        <td>
+                                            <button class="btn-action edit acao-btn" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action delete acao-btn" title="Excluir">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Aba Configurações -->
+            <section class="tab-content" id="configuracoes">
+                <div class="content-header">
+                    <h2>Configurações do Workspace</h2>
+                    <p>Personalize as configurações do seu workspace</p>
+                </div>
+
+                <div class="painel-grid">
+                    <!-- Dados do Workspace -->
+                    <div class="painel-card">
+                        <h3>Dados do Workspace</h3>
+                        <form class="painel-form" id="formWorkspace">
+                            <div class="form-group">
+                                <label for="nomeWorkspace">Nome do Workspace</label>
+                                <input type="text" id="nomeWorkspace" name="nome" value="DataCerta" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="logoWorkspace">Logo</label>
+                                <div class="file-input-wrapper">
+                                    <input type="file" id="logoWorkspace" name="logo" accept="image/*">
+                                    <label for="logoWorkspace" class="file-input-label">
+                                        <i class="fas fa-upload"></i>
+                                        Escolher arquivo
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="descricaoWorkspace">Descrição</label>
+                                <textarea id="descricaoWorkspace" name="descricao" placeholder="Descrição do workspace"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="painel-btn primary">
+                                    <i class="fas fa-save"></i>
+                                    Salvar Configurações
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Preferências -->
+                    <div class="painel-card">
+                        <h3>Preferências</h3>
+                        <div class="preferences-list">
+                            <div class="preference-item">
+                                <label class="switch">
+                                    <input type="checkbox" id="notificacoes">
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="preference-info">
+                                    <h4>Notificações por E-mail</h4>
+                                    <p>Receber notificações sobre vencimentos</p>
+                                </div>
+                            </div>
+                            <div class="preference-item">
+                                <label class="switch">
+                                    <input type="checkbox" id="relatorios" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <div class="preference-info">
+                                    <h4>Relatórios Automáticos</h4>
+                                    <p>Gerar relatórios semanais automaticamente</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Feedback Messages -->
+        <div class="feedback-container" id="feedbackContainer"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../scripts/painel-controle.js"></script>
+    <script>
+        // Controle de tema
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Controle de abas
+        const tabs = document.querySelectorAll('.painel-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Upload de arquivo
+        const importarBtn = document.getElementById('importarLote');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        importarBtn.addEventListener('click', () => {
+            uploadArea.style.display = uploadArea.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.querySelector('.upload-box').addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const preview = document.getElementById('filePreview');
+                preview.style.display = 'block';
+                preview.querySelector('.preview-content').innerHTML = `
+                    <p><strong>Arquivo:</strong> ${file.name}</p>
+                    <p><strong>Tamanho:</strong> ${(file.size / 1024).toFixed(2)} KB</p>
+                    <p><strong>Tipo:</strong> ${file.type}</p>
+                `;
+            }
+        });
+
+        // Função para mostrar feedback
+        function showFeedback(message, type = 'success') {
+            const container = document.getElementById('feedbackContainer');
+            const feedback = document.createElement('div');
+            feedback.className = `feedback ${type}`;
+            feedback.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+                <button class="close-feedback" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(feedback);
+            
+            setTimeout(() => {
+                feedback.remove();
+            }, 5000);
+        }
+
+        // Simulação de cadastros
+        document.getElementById('formProduto').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showFeedback('Produto cadastrado com sucesso!');
+            e.target.reset();
+        });
+
+        document.getElementById('formLocal').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showFeedback('Local cadastrado com sucesso!');
+            e.target.reset();
+        });
+
+        document.getElementById('formUsuario').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showFeedback('Convite enviado com sucesso!');
+            e.target.reset();
+        });
+
+        document.getElementById('formWorkspace').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showFeedback('Configurações salvas com sucesso!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataCerta - Dashboard</title>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="painel-controle.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Painel de Controle</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+                <div class="header-center">
+                    <h1>DataCerta</h1>
+                </div>
+                <div class="header-right">
+                    <span class="welcome-message">Bem-vindo, Administrador | Sair</span>
+                </div>
+            </header>
+
+            <!-- Painel de KPIs -->
+            <section class="kpi-panel">
+                <div class="kpi-grid">
+                    <!-- Card 1: Total de Produtos -->
+                    <div class="kpi-card" id="total-produtos">
+                        <div class="kpi-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>TOTAL DE PRODUTOS</h3>
+                            <span class="kpi-value">1,247</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Valor Total em Produtos -->
+                    <div class="kpi-card" id="valor-produtos">
+                        <div class="kpi-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>VALOR TOTAL</h3>
+                            <span class="kpi-value">R$ 89.500</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Produtos Vendidos -->
+                    <div class="kpi-card" id="produtos-vendidos">
+                        <div class="kpi-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>VENDIDOS</h3>
+                            <span class="kpi-value">324</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Produtos Perdidos -->
+                    <div class="kpi-card" id="produtos-perdidos">
+                        <div class="kpi-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>PERDIDOS</h3>
+                            <span class="kpi-value">28</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Validade Longa -->
+                    <div class="kpi-card" id="validade-longa">
+                        <div class="kpi-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>VALIDADE LONGA</h3>
+                            <span class="kpi-value">895</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Próximo Vencimento -->
+                    <div class="kpi-card" id="proximo-vencimento">
+                        <div class="kpi-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="kpi-content">
+                            <h3>PRÓXIMO VENC.</h3>
+                            <span class="kpi-value">124</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Área de Gráficos -->
+            <section class="charts-section">
+                <!-- Primeira Linha de Gráficos -->
+                <div class="charts-row">
+                    <!-- Gráfico 1: Vencimento por Local -->
+                    <div class="chart-container" id="vencimento-local">
+                        <div class="chart-header">
+                            <h3>Vencimento por Local</h3>
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico Pizza - Área para Chart.js</p>
+                            <span>45% Centro</span>
+                            <span>30% Norte</span>
+                            <span>25% Sul</span>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico 2: Perdas vs Vendas -->
+                    <div class="chart-container" id="perdas-vendas">
+                        <div class="chart-header">
+                            <h3>Perdas X Vendas (%)</h3>
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico de Barras - Área para Chart.js</p>
+                            <span>Vendas: 85%</span>
+                            <span>Perdas: 15%</span>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico 3: TOP 10 Produtos -->
+                    <div class="chart-container" id="top-produtos">
+                        <div class="chart-header">
+                            <h3>TOP 10 Produtos Vendidos</h3>
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico de Colunas 3D - Área para Chart.js</p>
+                            <span>Produto A: 120 unidades</span>
+                            <span>Produto B: 95 unidades</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segunda Linha de Gráficos -->
+                <div class="charts-row">
+                    <!-- Gráfico 4: Valor Vendas vs Perdas -->
+                    <div class="chart-container" id="valor-vendas-perdas">
+                        <div class="chart-header">
+                            <h3>Valor Vendas X Perdas (R$)</h3>
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico de Barras - Área para Chart.js</p>
+                            <span>Vendas: R$ 65.200</span>
+                            <span>Perdas: R$ 4.800</span>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico 5: Categorias Próximo Vencimento -->
+                    <div class="chart-container" id="categorias-vencimento">
+                        <div class="chart-header">
+                            <h3>Próximo Vencimento por Categoria</h3>
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico de Barras - Área para Chart.js</p>
+                            <span>Alimentos: 45 produtos</span>
+                            <span>Bebidas: 32 produtos</span>
+                            <span>Limpeza: 28 produtos</span>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico 6: Performance Mensal -->
+                    <div class="chart-container" id="performance-mensal">
+                        <div class="chart-header">
+                            <h3>Performance Mensal</h3>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="chart-placeholder">
+                            <p>Gráfico de Linhas - Área para Chart.js</p>
+                            <span>Vendas: Tendência crescente</span>
+                            <span>Perdas: Estável</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript para controle do tema -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Verificar tema salvo no localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
